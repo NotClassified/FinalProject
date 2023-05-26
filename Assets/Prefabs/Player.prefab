@@ -10,7 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -7918335002988649766, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_CastShadows
       value: 1
@@ -68,6 +84,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bf6bd8b4709478849b11ac1abc56cfa7, type: 2}
+    - target: {fileID: -7493596028755563170, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -7493596028755563170, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -7493596028755563170, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -7493596028755563170, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
@@ -88,6 +116,22 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7493596028755563170, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: -4292154010595695564, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -99,6 +143,10 @@ PrefabInstance:
     - target: {fileID: -4292154010595695564, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4292154010595695564, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 882129737928793925, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -139,6 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77722d6be929f2f4c9ce6682e6e94e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forwardAcceleration: 3
+  backwardAcceleration: 3
+  turnAcceleration: 0.3
 --- !u!50 &8606916927130677851
 Rigidbody2D:
   serializedVersion: 4
@@ -152,9 +203,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_LinearDrag: 2
+  m_AngularDrag: 3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -210,8 +261,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.75}
-      - {x: -1, y: -0.25}
-      - {x: 0, y: -1.25}
-      - {x: 1, y: -0.25}
+    - - {x: 0, y: 0.175}
+      - {x: -0.1, y: -0.025}
+      - {x: 0, y: -0.125}
+      - {x: 0.1, y: -0.025}
   m_UseDelaunayMesh: 0

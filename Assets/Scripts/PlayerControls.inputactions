@@ -6,9 +6,27 @@
             "id": "ace83494-847e-4d21-b222-d67539d14c99",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Forward",
                     "type": "Button",
                     "id": "fd6e20bb-834e-45d1-943a-3652706154c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "3a6fa0e4-c233-43e4-8545-b4dd8e70b93b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Backward",
+                    "type": "Button",
+                    "id": "38d1f01b-419b-4ac7-b445-f4a13a3e458e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,13 +37,57 @@
                 {
                     "name": "",
                     "id": "d18ce675-f45d-47e7-9eb8-e725721f8380",
-                    "path": "",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Forward",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1073d06-fe0f-4f89-8b73-1cfc2bffa401",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Backward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "23774acf-628b-4915-bbf6-0e41755a37d0",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "945c634c-e6df-4168-a744-10c98b1892a6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "2a227a9d-7b63-4bac-9d7f-7f54682f740b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
