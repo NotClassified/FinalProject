@@ -5,16 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //[SerializeField] InputActionAsset controls;
-
     [SerializeField] float forwardAcceleration;
-    //[SerializeField] float forwardMaxSpeed;
-
     [SerializeField] float backwardAcceleration;
-    //[SerializeField] float backwardMaxSpeed;
-
     [SerializeField] float turnAcceleration;
-    //[SerializeField] float turnMaxSpeed;
 
     Rigidbody2D rb;
 
