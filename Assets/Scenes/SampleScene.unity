@@ -609,6 +609,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3575650983367912579, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: turnSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575650983367912579, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: acceleration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606916927130677851, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606916927130677851, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8606916927130677851, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

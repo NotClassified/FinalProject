@@ -5,9 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float forwardAcceleration;
-    [SerializeField] float backwardAcceleration;
-    [SerializeField] float turnAcceleration;
+    [SerializeField] float acceleration;
+    float movementVerticle;
+    float movementHorizontal;
+    Vector2 movement;
+
+    [SerializeField] float turnSpeed;
+    float targetAngle;
 
     Rigidbody2D rb;
 
@@ -18,25 +22,53 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        //verticle movement (y-axis)
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(forwardAcceleration * transform.up);
+            movementVerticle = 0;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            movementVerticle = 1;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            movementVerticle = -1;
+        }
+        else
+        {
+            movementVerticle = 0;
+        }
+
+        //horizontal movement (x-axis)
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
+        {
+            movementHorizontal = 0;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            movementHorizontal = 1;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            movementHorizontal = -1;
+        }
+        else
+        {
+            movementHorizontal = 0;
+        }
+
+        movement = new Vector2(movementHorizontal, movementVerticle);
+        rb.AddForce(acceleration * movement.normalized);
+
+        if (movement.magnitude > 0)
+        {
+            targetAngle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
 
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            rb.AddForce(backwardAcceleration * -transform.up);
-
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rb.AddTorque(-turnAcceleration);
-
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            rb.AddTorque(turnAcceleration);
-
-        }
+        transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle
+            (
+                transform.eulerAngles.z, targetAngle, turnSpeed * Time.deltaTime
+            ));
     }
 }
