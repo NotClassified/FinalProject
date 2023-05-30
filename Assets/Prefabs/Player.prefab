@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -32.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 836de6152654cde46937dabc6fe5392c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -257,7 +257,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 1.2
+  m_LinearDrag: 0.4
   m_AngularDrag: 0.02
   m_GravityScale: 0
   m_Material: {fileID: 0}
