@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public event System.Action<Vector2> Position;
+
     [SerializeField] float acceleration;
     float movementVerticle;
     float movementHorizontal;
@@ -60,6 +62,9 @@ public class PlayerMovement : MonoBehaviour
 
         movement = new Vector2(movementHorizontal, movementVerticle);
         rb.AddForce(acceleration * movement.normalized);
+
+        if (Position != null)
+            Position(transform.position);
 
         if (movement.magnitude > 0)
         {
