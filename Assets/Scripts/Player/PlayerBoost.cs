@@ -5,16 +5,16 @@ using UnityEngine;
 public class PlayerBoost : MonoBehaviour
 {
     [Header("Boost Parameters")]
-    [SerializeField] float minBoostForce;
-    [SerializeField] float maxBoostForce;
-    [SerializeField] float minDistanceFor0Percent;
-    [SerializeField] float maxDistanceFor100Percent;
+    [SerializeField] float minBoostForce0Percent;
+    [SerializeField] float maxBoostForce100Precent;
+    [SerializeField] float maxDistanceFor0Percent;
+    [SerializeField] float minDistanceFor100Percent;
     float distanceToBooster;
     float percentBoost;
 
     [SerializeField] Vector2 castSize;
     [SerializeField] ContactFilter2D contactFilter;
-    RaycastHit2D[] boosterHit = new RaycastHit2D[1];
+    RaycastHit2D lastHit;
 
     [Header("Spam Prevention")]
     [SerializeField] float attemptCoolDown;
@@ -33,21 +33,22 @@ public class PlayerBoost : MonoBehaviour
         {
             attemptTimer = attemptCoolDown;
 
-            if (Physics2D.BoxCast(transform.position, castSize, 0, transform.up, contactFilter, boosterHit) > 0)
+            RaycastHit2D[] boosterHit = new RaycastHit2D[1];
+            if (Physics2D.BoxCast(transform.position, castSize, transform.eulerAngles.z, 
+                 Vector3.zero, contactFilter, boosterHit) > 0)
             {
-                distanceToBooster = Vector2.Distance(transform.position, 
+                //distance between player and booster to determine extra speed amount
+                distanceToBooster = Vector2.Distance(transform.position,
                                                       boosterHit[0].collider.ClosestPoint(transform.position));
-                print(distanceToBooster);
-                distanceToBooster = Mathf.Clamp(distanceToBooster, minDistanceFor0Percent, maxDistanceFor100Percent);
+                distanceToBooster = Mathf.Clamp(distanceToBooster, minDistanceFor100Percent, maxDistanceFor0Percent);
 
-                percentBoost = Mathf.Abs(FindPercentageOfAValueBetweenTwoNumbers(distanceToBooster,
-                                                                                  maxDistanceFor100Percent,
-                                                                                    minDistanceFor0Percent));
                 //shorter distance to booster = more force
-                float force = Mathf.Lerp(minBoostForce, maxBoostForce, percentBoost);
+                percentBoost = Mathf.Abs(FindPercentageOfAValueBetweenTwoNumbers(distanceToBooster,
+                                                                                  maxDistanceFor0Percent,
+                                                                                    minDistanceFor100Percent));
+                float force = Mathf.Lerp(minBoostForce0Percent, maxBoostForce100Precent, percentBoost);
 
                 rb.AddForce(transform.up * force, ForceMode2D.Impulse);
-                print("%" + percentBoost * 100);
             }
         }
 
@@ -60,5 +61,16 @@ public class PlayerBoost : MonoBehaviour
     public static float FindPercentageOfAValueBetweenTwoNumbers(float value, float a, float b)
     {
         return (value - a) / (b - a);
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawCube(transform.position, castSize);
+
+        Gizmos.color = Color.red;
+        if (lastHit.collider != null)
+        {
+            Gizmos.DrawLine(transform.position, lastHit.collider.ClosestPoint(transform.position));
+        }
     }
 }

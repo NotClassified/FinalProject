@@ -35,6 +35,7 @@ public class BoostManager : MonoBehaviour
                 yield return new WaitForSeconds(spawnFrequency);
                 SpawnBooster();
             }
+            yield return null;
         }
     }
 
