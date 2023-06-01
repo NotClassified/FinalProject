@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    public static event System.Action<GameObject> AsteroidHit;
+
     Rigidbody2D rb;
     Asteroid collidedAsteroid;
 
@@ -27,7 +29,10 @@ public class PlayerCollision : MonoBehaviour
                 slowerSpeedRoutine = StartCoroutine(SlowDownSpeed());
             }
             dragTimer = slowDownDuration;
-            collision.gameObject.SetActive(false);
+            if (AsteroidHit != null)
+            {
+                AsteroidHit(collision.gameObject);
+            }
         }
     }
 

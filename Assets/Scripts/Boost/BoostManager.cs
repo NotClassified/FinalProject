@@ -42,7 +42,7 @@ public class BoostManager : MonoBehaviour
     private void SpawnBooster()
     {
         GameObject booster = Pooler.GetInstance();
-        Vector3 spawn = LevelAssetData.instance.GetRandomPosition(true);
+        Vector2 spawn = LevelAssetData.instance.GetRandomAssetPosition(true);
         booster.transform.position = spawn;
 
         Booster script = booster.GetComponent<Booster>();

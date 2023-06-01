@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public float speedDecrement;
+    public float speed;
+    public Vector3 direction;
+
+    private void Update()
+    {
+        transform.position += direction.normalized * speed * Time.deltaTime;
+    }
 }
