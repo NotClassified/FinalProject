@@ -36,7 +36,8 @@ public class PlayerBoost : MonoBehaviour
             if (Physics2D.BoxCast(transform.position, castSize, 0, transform.up, contactFilter, boosterHit) > 0)
             {
                 distanceToBooster = Vector2.Distance(transform.position, 
-                                                      boosterHit[0].transform.GetComponent<Booster>().center);
+                                                      boosterHit[0].collider.ClosestPoint(transform.position));
+                print(distanceToBooster);
                 distanceToBooster = Mathf.Clamp(distanceToBooster, minDistanceFor0Percent, maxDistanceFor100Percent);
 
                 percentBoost = Mathf.Abs(FindPercentageOfAValueBetweenTwoNumbers(distanceToBooster,
