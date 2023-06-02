@@ -79,12 +79,11 @@ public class AsteroidManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(checkOutOfBoundsFrequency);
-            print(true);
-            foreach (GameObject asteroid in currentAsteroids)
+            for (int i = 0; i < currentAsteroids.Count; i++)
             {
                 //release asteroids that are out of bounds
-                if (!LevelAssetData.instance.IsInLevelBounds(asteroid.transform.position))
-                    ReleaseAsteroid(asteroid);
+                if (!LevelAssetData.instance.IsInLevelBounds(currentAsteroids[i].transform.position))
+                    ReleaseAsteroid(currentAsteroids[i]);
             }
         }
     }

@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77722d6be929f2f4c9ce6682e6e94e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 7
+  acceleration: 10
   turnSpeed: 4
 --- !u!114 &6188550452421629536
 MonoBehaviour:
@@ -257,7 +257,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 0.4
+  m_LinearDrag: 0.8
   m_AngularDrag: 0.02
   m_GravityScale: 0
   m_Material: {fileID: 0}

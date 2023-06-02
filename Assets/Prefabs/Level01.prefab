@@ -143,7 +143,7 @@ Transform:
   - {fileID: 8400257907646047476}
   - {fileID: 4559650760449609999}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8959879883959172200
 MonoBehaviour:
@@ -159,7 +159,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assetBounds: []
   filledAssets: 
-  assetSize: {x: 10, y: 7.5}
+  assetSize: {x: 9.5, y: 7}
+  levelBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 75, y: 45, z: 0}
 --- !u!1001 &27593768913836509
 PrefabInstance:
   m_ObjectHideFlags: 0

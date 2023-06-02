@@ -355,10 +355,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c872fdd9c824e44fbf7791cdfb8c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAmount: 5
-  maxAmount: 20
+  startAmount: 10
+  maxAmount: 50
   boostLifetime: 20
-  spawnFrequency: 5
+  spawnFrequency: 2
 --- !u!1 &1059794916
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,11 +419,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startAmount: 5
-  maxAmount: 100
-  spawnBunchAmount: 1
-  spawnFrequency: 2
-  checkOutOfBoundsFrequency: 5
-  speed: 10
+  maxAmount: 40
+  spawnBunchAmount: 2
+  spawnFrequency: 5
+  checkOutOfBoundsFrequency: 20
+  speed: 2
   direction: {x: -1, y: 1}
   minSize: 0.2
   maxSize: 0.5
@@ -483,14 +483,6 @@ PrefabInstance:
     - target: {fileID: 5975900377199527888, guid: 0b357dcd2e4c7294cbf9aac7dd5cf60d, type: 3}
       propertyPath: m_Name
       value: Level01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959879883959172200, guid: 0b357dcd2e4c7294cbf9aac7dd5cf60d, type: 3}
-      propertyPath: levelBounds.m_Extent.x
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8959879883959172200, guid: 0b357dcd2e4c7294cbf9aac7dd5cf60d, type: 3}
-      propertyPath: levelBounds.m_Extent.y
-      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
