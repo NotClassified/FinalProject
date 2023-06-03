@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class BoostPooler : MonoBehaviour
 {
-    //public static BoostPooler instance;
     [SerializeField] GameObject boostPrefab;
     private List<GameObject> boostInstances = new List<GameObject>();
     [SerializeField] int startSize;
-
-    //private void Awake()
-    //{
-    //    instance = this;
-    //}
 
     private void Start()
     {

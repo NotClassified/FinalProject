@@ -5,10 +5,9 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     public static event System.Action<GameObject> AsteroidHit;
+    public static event System.Action<GameObject> ItemPickedup;
 
     Rigidbody2D rb;
-    Asteroid collidedAsteroid;
-
     [SerializeField] float slowDownDuration;
     [SerializeField] float dragIncrease;
     float dragTimer;
@@ -21,7 +20,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Asteroid>(out collidedAsteroid))
+        if (collision.GetComponent<Asteroid>() != null)
         {
             if (slowerSpeedRoutine == null)
             {
@@ -29,10 +28,14 @@ public class PlayerCollision : MonoBehaviour
                 slowerSpeedRoutine = StartCoroutine(SlowDownSpeed());
             }
             dragTimer = slowDownDuration;
+
             if (AsteroidHit != null)
-            {
                 AsteroidHit(collision.gameObject);
-            }
+        }
+        else if(collision.GetComponent<Item>() != null)
+        {
+            if (ItemPickedup != null)
+                ItemPickedup(collision.transform.gameObject);
         }
     }
 

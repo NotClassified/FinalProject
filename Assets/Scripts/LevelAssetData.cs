@@ -70,7 +70,7 @@ public class LevelAssetData : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public Vector2 GetRandomAssetPosition(bool emptyTile)
+    public Vector2 GetRandomAssetPosition(bool emptyTile, bool fillTile)
     {
         int rand;
         if (emptyTile)
@@ -86,13 +86,15 @@ public class LevelAssetData : MonoBehaviour
                 rand = Random.Range(0, assetBounds.Count);
             } while (filledAssets.Contains(rand));
 
-            filledAssets.Add(rand);
+            if (fillTile)
+                filledAssets.Add(rand);
             return GetRandomBoundPosition(assetBounds[rand]);
         }
         else
         {
             rand = Random.Range(0, assetBounds.Count);
-            filledAssets.Add(rand);
+            if (fillTile)
+                filledAssets.Add(rand);
             return GetRandomBoundPosition(assetBounds[rand]);
         }
     }
