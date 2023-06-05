@@ -30,9 +30,9 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         LevelManager levelManager = LevelManager.instance;
-        LevelManager.PositionMethod posMethod = new LevelManager.PositionMethod(levelManager.GetRandomAssetPosition);
+        LevelManager.PositionMethod posMethod = levelManager.GetRandomAssetPosition;
 
-        for (int i = 0; i < pickupAmount /*&& failedAttempts < 300*/; i++)
+        for (int i = 0; i < pickupAmount; i++)
         {
             Vector2 position = levelManager.FindAreaWithoutC<Item>(posMethod, minSpaceBetweenPickups, true);
 

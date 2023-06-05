@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
     public delegate Vector2 PositionMethod();
+    public delegate Vector2 PositionOnScreenSide(ScreenSides[] sides);
 
     public List<Bounds> assetBounds = new List<Bounds>();
     public List<int> filledAssets = new List<int>();
@@ -79,7 +80,7 @@ public class LevelManager : MonoBehaviour
         return GetRandomBoundPosition(assetBounds[rand]);
     }
 
-    bool DoesAreaHaveComponent<Component>(Vector2 center, float radius, ContactFilter2D filter)
+    bool DoesAreaHaveC<C>(Vector2 center, float radius, ContactFilter2D filter) where C : Component
     {
         Collider2D[] results = new Collider2D[20];
         Physics2D.OverlapCircle(center, radius, filter, results);
@@ -88,14 +89,15 @@ public class LevelManager : MonoBehaviour
         {
             if (col == null)
                 return false;
-            else
-                print(col.gameObject);
-            if (col.GetComponent<Component>() != null) //an object with "Component" is within distance
+            if (col.GetComponent<C>() != null) //an object with "C" component is within distance
+            {
+                print(typeof(C).FullName);
                 return true;
+            }
         }
         return false;
     }
-    public Vector2 FindAreaWithoutC<C>(PositionMethod method, float radius, bool useTriggers)
+    public Vector2 FindAreaWithoutC<C>(PositionMethod method, float radius, bool useTriggers) where C : Component
     {
         //prevent too many loops
         int maxLoops = 100;
@@ -107,28 +109,32 @@ public class LevelManager : MonoBehaviour
         do
         {
             newPos = method();
-        } while (DoesAreaHaveComponent<C>(newPos, radius, antiLevelFilter) && ++loopAmount < maxLoops);
-        print(loopAmount);
+        } while (DoesAreaHaveC<C>(newPos, radius, antiLevelFilter) && ++loopAmount < maxLoops);
+
+        if (loopAmount >= maxLoops)
+            Debug.LogWarning("maxLoops was reached");
+
         return newPos; //no objects with "C" component is within distance
     }
+    public Vector2 FindAreaWithoutC<C>(PositionOnScreenSide method, ScreenSides[] sides, float radius, bool useTriggers) where C : Component
+    {
+        //prevent too many loops
+        int maxLoops = 100;
+        int loopAmount = 0;
 
-    //public Vector2 GetRandomAssetPosition<AvoidComponent>(float avoidDistance, bool useTriggers)
-    //{
-    //    //prevent too many loops
-    //    int maxLoops = 100;
-    //    int loopAmount = 0;
+        antiLevelFilter.useTriggers = useTriggers;
 
-    //    ContactFilter2D filter = new ContactFilter2D();
-    //    filter.useTriggers = useTriggers;
+        Vector2 newPos;
+        do
+        {
+            newPos = method(sides);
+        } while (DoesAreaHaveC<C>(newPos, radius, antiLevelFilter) && ++loopAmount < maxLoops);
 
-    //    Vector2 randPos;
-    //    do
-    //    {
-    //        randPos = GetRandomAssetPosition();
-    //    } while (DoesAreaHaveComponent<AvoidComponent>(randPos, avoidDistance, filter) && ++loopAmount < maxLoops);
+        if (loopAmount >= maxLoops)
+            Debug.LogWarning("maxLoops was reached with " + typeof(C).FullName);
 
-    //    return randPos; //no objects with "AvoidComponent" is within distance
-    //}
+        return newPos; //no objects with "C" component is within distance
+    }
 
     private Vector2 GetRandomBoundPosition(Bounds bounds)
     {
@@ -136,23 +142,6 @@ public class LevelManager : MonoBehaviour
         float y = Random.Range(bounds.min.y, bounds.max.y);
         return new Vector2(x, y);
     }
-    //private Vector2 GetRandomBoundPosition<AvoidComponent>(Bounds bounds, float avoidDistance, bool useTriggers)
-    //{
-    //    //prevent too many loops
-    //    int maxLoops = 100;
-    //    int loopAmount = 0;
-
-    //    ContactFilter2D filter = new ContactFilter2D();
-    //    filter.useTriggers = useTriggers;
-
-    //    Vector2 randPos;
-    //    do
-    //    {
-    //        randPos = GetRandomAssetPosition();
-    //    } while (DoesAreaHaveComponent<AvoidComponent>(randPos, avoidDistance, filter) && ++loopAmount < maxLoops);
-
-    //    return randPos; //no objects with "AvoidComponent" is within distance
-    //}
 
     public bool IsInLevelBounds(Vector2 position)
     {

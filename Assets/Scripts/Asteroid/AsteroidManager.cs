@@ -21,6 +21,7 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField] int maxAmount;
     [SerializeField] int spawnBunchAmount;
     [SerializeField] float spawnFrequency;
+    [SerializeField] float spaceBetweenAsteroids;
     [SerializeField] float checkOutOfBoundsFrequency;
 
     [Header("Instance Parameters")]
@@ -30,8 +31,12 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField] float maxSize;
     [SerializeField] ScreenSides[] spawnSides;
 
+    LevelManager.PositionOnScreenSide posMethod;
+
     private void Awake()
     {
+        posMethod =LevelManager.instance.GetRandomBoundaryPosition;
+
         PlayerCollision.AsteroidHit += ReleaseAsteroid;
     }
     private void OnDestroy()
@@ -41,7 +46,11 @@ public class AsteroidManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        SpawnAsteroids(startAmount);
+        for (int i = 0; i < startAmount; i++)
+        {
+            SpawnAsteroids();
+            yield return new WaitForFixedUpdate();
+        }
 
         StartCoroutine(CheckOutOfBounds());
         while (true)
@@ -49,29 +58,29 @@ public class AsteroidManager : MonoBehaviour
             while (currentAsteroids.Count < maxAmount)
             {
                 yield return new WaitForSeconds(spawnFrequency);
-                SpawnAsteroids(spawnBunchAmount);
+                for (int i = 0; i < spawnBunchAmount && currentAsteroids.Count < maxAmount; i++)
+                {
+                    SpawnAsteroids();
+                    yield return new WaitForFixedUpdate();
+                }
             }
             yield return null;
         }
     }
 
-    private void SpawnAsteroids(int amount)
+    private void SpawnAsteroids()
     {
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject asteroid = Pooler.GetInstance();
-            Vector2 spawn = LevelManager.instance.GetRandomBoundaryPosition(spawnSides);
-            asteroid.transform.position = spawn;
-            asteroid.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
+        GameObject asteroid = Pooler.GetInstance();
+        Vector2 spawn = LevelManager.instance.FindAreaWithoutC<Asteroid>(posMethod, spawnSides, spaceBetweenAsteroids, true);
 
-            Asteroid script = asteroid.GetComponent<Asteroid>();
-            script.speed = this.speed;
-            script.direction = this.direction;
+        asteroid.transform.position = spawn;
+        asteroid.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
 
-            currentAsteroids.Add(asteroid);
-            if (currentAsteroids.Count >= maxAmount)
-                break;
-        }
+        Asteroid script = asteroid.GetComponent<Asteroid>();
+        script.speed = this.speed;
+        script.direction = this.direction;
+
+        currentAsteroids.Add(asteroid);
     }
 
     IEnumerator CheckOutOfBounds()

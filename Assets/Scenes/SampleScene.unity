@@ -422,7 +422,8 @@ MonoBehaviour:
   startAmount: 5
   maxAmount: 50
   spawnBunchAmount: 1
-  spawnFrequency: 3
+  spawnFrequency: 1
+  spaceBetweenAsteroids: 20
   checkOutOfBoundsFrequency: 20
   speed: 6
   direction: {x: -1, y: 1}

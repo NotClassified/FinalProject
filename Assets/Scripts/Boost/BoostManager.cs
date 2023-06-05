@@ -26,7 +26,7 @@ public class BoostManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        posMethod = new LevelManager.PositionMethod(LevelManager.instance.GetRandomAssetPosition);
+        posMethod = LevelManager.instance.GetRandomAssetPosition;
 
         for (int i = 0; i < startAmount; i++)
         {
