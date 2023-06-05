@@ -31,6 +31,7 @@ public class BoostManager : MonoBehaviour
         for (int i = 0; i < startAmount; i++)
         {
             SpawnBooster();
+            yield return new WaitForEndOfFrame();
         }
 
         while (true)

@@ -13,9 +13,9 @@ public class SpeedBoost : Item
     {
         PlayerMovement movement = player.GetComponent<PlayerMovement>();
         movement.AddAcceleration(extraAcceleration);
-        print("boost activated");
+        //print("boost activated");
         yield return new WaitForSeconds(duration);
-        print("boost deactivated");
+        //print("boost deactivated");
         movement.ResetAcceleration();
     }
 }

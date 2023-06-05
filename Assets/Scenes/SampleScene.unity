@@ -291,6 +291,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: dragIncrease
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: boostDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: minBoostForce0Percent
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: maxBoostForce100Precent
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088261616437076959, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: dragIncrease
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088261616437076959, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
+      propertyPath: dragReleaseDuration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -425,7 +449,7 @@ MonoBehaviour:
   spawnFrequency: 1
   spaceBetweenAsteroids: 20
   checkOutOfBoundsFrequency: 20
-  speed: 6
+  speed: 8
   direction: {x: -1, y: 1}
   minSize: 2
   maxSize: 5

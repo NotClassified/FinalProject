@@ -21,8 +21,11 @@ public class PlayerItems : MonoBehaviour
 
     void PickupItem(GameObject itemObj)
     {
-        currentItem = ItemManager.instance.GetRandomItem();
-        print("picked up: " + currentItem.GetType());
+        if (currentItem == null)
+        {
+            currentItem = ItemManager.instance.GetRandomItem();
+            print("picked up: " + currentItem.GetType());
+        }
     }
 
     //void UseItem()

@@ -91,7 +91,7 @@ public class LevelManager : MonoBehaviour
                 return false;
             if (col.GetComponent<C>() != null) //an object with "C" component is within distance
             {
-                print(typeof(C).FullName);
+                //print(typeof(C).FullName);
                 return true;
             }
         }

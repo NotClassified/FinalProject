@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public event System.Action<Vector2> Position;
+    public static event System.Action<Vector2> PlayerVelocity;
 
     [SerializeField] float defaultAcceleration;
     float currentAcceleration;
@@ -63,9 +64,6 @@ public class PlayerMovement : MonoBehaviour
             movementHorizontal = 0;
         }
 
-        movement = new Vector2(movementHorizontal, movementVerticle);
-        rb.AddForce(currentAcceleration * movement.normalized);
-
         if (Position != null)
             Position(transform.position);
 
@@ -78,6 +76,16 @@ public class PlayerMovement : MonoBehaviour
             (
                 transform.eulerAngles.z, targetAngle, turnSpeed * Time.deltaTime
             ));
+    }
+
+    private void FixedUpdate()
+    {
+        movement = new Vector2(movementHorizontal, movementVerticle);
+        rb.AddForce(currentAcceleration * movement.normalized);
+        if (PlayerVelocity != null)
+        {
+            PlayerVelocity(rb.velocity);
+        }
     }
 
     public void AddAcceleration(float add) => currentAcceleration += add;

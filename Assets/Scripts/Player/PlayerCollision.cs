@@ -8,6 +8,7 @@ public class PlayerCollision : MonoBehaviour
     public static event System.Action<GameObject> ItemPickedup;
 
     Rigidbody2D rb;
+    float initialDrag;
     [SerializeField] float dragIncrease;
     [SerializeField] float dragReleaseDuration;
     Coroutine slowerSpeedRoutine;
@@ -15,6 +16,7 @@ public class PlayerCollision : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialDrag = rb.drag;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,7 +40,6 @@ public class PlayerCollision : MonoBehaviour
 
     IEnumerator SlowDownSpeed()
     {
-        float initialDrag = rb.drag;
         float newDrag = initialDrag + dragIncrease;
 
         float timer = 0;

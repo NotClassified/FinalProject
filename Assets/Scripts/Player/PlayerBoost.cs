@@ -9,6 +9,9 @@ public class PlayerBoost : MonoBehaviour
     [SerializeField] float maxBoostForce100Precent;
     [SerializeField] float maxDistanceFor0Percent;
     [SerializeField] float minDistanceFor100Percent;
+    [SerializeField] float boostDuration;
+    [SerializeField] float dragIncrease;
+    float initialDrag;
     float distanceToBooster;
     float percentBoost;
 
@@ -21,10 +24,19 @@ public class PlayerBoost : MonoBehaviour
     float attemptTimer;
 
     Rigidbody2D rb;
+    Coroutine forwardBoostRoutine;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialDrag = rb.drag;
+
+        PlayerCollision.AsteroidHit += StopBoostWhenAsteroidHit;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerCollision.AsteroidHit -= StopBoostWhenAsteroidHit;
     }
 
     private void Update()
@@ -48,7 +60,8 @@ public class PlayerBoost : MonoBehaviour
                                                                                     minDistanceFor100Percent));
                 float force = Mathf.Lerp(minBoostForce0Percent, maxBoostForce100Precent, percentBoost);
 
-                rb.AddForce(transform.up * force, ForceMode2D.Impulse);
+                ForceStopForwardBoostRoutine(); //prevent multiple routines
+                forwardBoostRoutine = StartCoroutine(ForwardBoost(force));
             }
         }
 
@@ -57,6 +70,29 @@ public class PlayerBoost : MonoBehaviour
             attemptTimer -= Time.deltaTime;
         }
     }
+
+    IEnumerator ForwardBoost(float force)
+    {
+        rb.drag = initialDrag + dragIncrease;
+
+        float timer = 0;
+        while (timer < boostDuration)
+        {
+            rb.AddForce(transform.up * force);
+            timer += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        rb.drag = initialDrag;
+    }
+
+    void ForceStopForwardBoostRoutine()
+    {
+        if (forwardBoostRoutine != null)
+        {
+            StopCoroutine(forwardBoostRoutine);
+        }
+    }
+    void StopBoostWhenAsteroidHit(GameObject asteroid) => ForceStopForwardBoostRoutine();
 
     public static float FindPercentageOfAValueBetweenTwoNumbers(float value, float a, float b)
     {
