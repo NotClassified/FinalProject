@@ -21,9 +21,20 @@ public class PlayerItems : MonoBehaviour
 
     void PickupItem(GameObject itemObj)
     {
-        currentItem = itemObj.GetComponent<Item>();
+        currentItem = ItemManager.instance.GetRandomItem();
         print("picked up: " + currentItem.GetType());
     }
+
+    //void UseItem()
+    //{
+    //    if (currentItem != null)
+    //    {
+    //        currentItem.Use(gameObject);
+    //        //reset
+    //        currentItem = null;
+    //        buttonHeldTimer = 0;
+    //    }
+    //}
 
     private void Update()
     {
@@ -32,7 +43,7 @@ public class PlayerItems : MonoBehaviour
             buttonHeldTimer += Time.deltaTime;
             if (buttonHeldTimer >= buttonHeldDuration)
             {
-                currentItem.Use();
+                currentItem.Use(gameObject);
                 //reset
                 currentItem = null;
                 buttonHeldTimer = 0;

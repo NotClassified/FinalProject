@@ -356,9 +356,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startAmount: 10
-  maxAmount: 50
+  maxAmount: 40
   boostLifetime: 20
   spawnFrequency: 2
+  minSpaceBetweenBoosters: 10
 --- !u!1 &1059794916
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,14 +420,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startAmount: 5
-  maxAmount: 40
-  spawnBunchAmount: 2
-  spawnFrequency: 5
+  maxAmount: 50
+  spawnBunchAmount: 1
+  spawnFrequency: 3
   checkOutOfBoundsFrequency: 20
-  speed: 2
+  speed: 6
   direction: {x: -1, y: 1}
-  minSize: 0.2
-  maxSize: 0.5
+  minSize: 2
+  maxSize: 5
   spawnSides: 0100000003000000
 --- !u!1 &1331191838
 GameObject:
@@ -438,6 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331191840}
   - component: {fileID: 1331191839}
+  - component: {fileID: 1331191841}
   m_Layer: 0
   m_Name: ItemManager
   m_TagString: Untagged
@@ -490,6 +492,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1331191841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331191838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c694b372d038d41806b3878d05500f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraAcceleration: 3
+  duration: 5
 --- !u!1001 &2419401604789936391
 PrefabInstance:
   m_ObjectHideFlags: 0

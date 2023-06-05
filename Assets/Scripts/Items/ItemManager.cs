@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public static ItemManager instance;
+
     [SerializeField] GameObject itemPickupPrefab;
     private List<GameObject> itemPickups = new List<GameObject>();
-    private List<Vector2> pickupPositions = new List<Vector2>();
 
     [SerializeField] int pickupAmount;
     [SerializeField] float minSpaceBetweenPickups;
@@ -17,6 +18,7 @@ public class ItemManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         itemTypes = GetComponents<Item>();
         PlayerCollision.ItemPickedup += StartDeactivateRoutine;
     }
@@ -27,21 +29,16 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
-        int failedAttempts = 0;
-        for (int i = 0; i < pickupAmount && failedAttempts < 300; i++)
-        {
-            Vector2 randPos = LevelAssetData.instance.GetRandomAssetPosition(false, false);
-            while (Physics2D.OverlapCircle(randPos, minSpaceBetweenPickups, castFilter, new Collider2D[1]) > 0
-            && failedAttempts < 300)
-            {
+        LevelManager levelManager = LevelManager.instance;
+        LevelManager.PositionMethod posMethod = new LevelManager.PositionMethod(levelManager.GetRandomAssetPosition);
 
-                randPos = LevelAssetData.instance.GetRandomAssetPosition(false, false);
-                failedAttempts++;
-            }
-            var pickup = Instantiate(itemPickupPrefab, randPos, Quaternion.identity, transform);
+        for (int i = 0; i < pickupAmount /*&& failedAttempts < 300*/; i++)
+        {
+            Vector2 position = levelManager.FindAreaWithoutC<Item>(posMethod, minSpaceBetweenPickups, true);
+
+            var pickup = Instantiate(itemPickupPrefab, position, Quaternion.identity, transform);
             itemPickups.Add(pickup);
         }
-        print(failedAttempts);
     }
 
     void StartDeactivateRoutine(GameObject pickup) => StartCoroutine(DeactivatePickup(pickup));
@@ -52,4 +49,6 @@ public class ItemManager : MonoBehaviour
         pickup.SetActive(true);
 
     }
+
+    public Item GetRandomItem() => itemTypes[Random.Range(0, itemTypes.Length)];
 }

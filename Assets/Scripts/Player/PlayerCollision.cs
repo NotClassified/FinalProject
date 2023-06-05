@@ -8,9 +8,8 @@ public class PlayerCollision : MonoBehaviour
     public static event System.Action<GameObject> ItemPickedup;
 
     Rigidbody2D rb;
-    [SerializeField] float slowDownDuration;
     [SerializeField] float dragIncrease;
-    float dragTimer;
+    [SerializeField] float dragReleaseDuration;
     Coroutine slowerSpeedRoutine;
 
     private void Awake()
@@ -22,12 +21,10 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.GetComponent<Asteroid>() != null)
         {
-            if (slowerSpeedRoutine == null)
-            {
+            if (slowerSpeedRoutine != null)
                 //don't have multiple SlowDownSpeed routines
-                slowerSpeedRoutine = StartCoroutine(SlowDownSpeed());
-            }
-            dragTimer = slowDownDuration;
+                StopCoroutine(slowerSpeedRoutine);
+            slowerSpeedRoutine = StartCoroutine(SlowDownSpeed());
 
             if (AsteroidHit != null)
                 AsteroidHit(collision.gameObject);
@@ -42,10 +39,14 @@ public class PlayerCollision : MonoBehaviour
     IEnumerator SlowDownSpeed()
     {
         float initialDrag = rb.drag;
-        rb.drag += dragIncrease;
-        while (dragTimer > 0)
+        float newDrag = initialDrag + dragIncrease;
+
+        float timer = 0;
+        while (timer < dragReleaseDuration)
         {
-            dragTimer -= Time.deltaTime;
+            rb.drag = Mathf.Lerp(newDrag, initialDrag, timer / dragReleaseDuration);
+
+            timer += Time.deltaTime;
             yield return null;
         }
         rb.drag = initialDrag;

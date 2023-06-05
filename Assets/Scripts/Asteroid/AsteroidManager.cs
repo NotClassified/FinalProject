@@ -60,7 +60,7 @@ public class AsteroidManager : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject asteroid = Pooler.GetInstance();
-            Vector2 spawn = LevelAssetData.instance.GetRandomBoundaryPosition(spawnSides);
+            Vector2 spawn = LevelManager.instance.GetRandomBoundaryPosition(spawnSides);
             asteroid.transform.position = spawn;
             asteroid.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
 
@@ -82,7 +82,7 @@ public class AsteroidManager : MonoBehaviour
             for (int i = 0; i < currentAsteroids.Count; i++)
             {
                 //release asteroids that are out of bounds
-                if (!LevelAssetData.instance.IsInLevelBounds(currentAsteroids[i].transform.position))
+                if (!LevelManager.instance.IsInLevelBounds(currentAsteroids[i].transform.position))
                     ReleaseAsteroid(currentAsteroids[i]);
             }
         }

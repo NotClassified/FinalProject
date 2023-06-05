@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    
-    public virtual void Use() { print(this + " was used"); }
+
+    public virtual void Use(GameObject player) { }
 }

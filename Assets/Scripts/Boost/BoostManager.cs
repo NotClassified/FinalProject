@@ -20,9 +20,14 @@ public class BoostManager : MonoBehaviour
     [SerializeField] int maxAmount;
     [SerializeField] float boostLifetime;
     [SerializeField] float spawnFrequency;
+    [SerializeField] float minSpaceBetweenBoosters;
+
+    LevelManager.PositionMethod posMethod;
 
     private IEnumerator Start()
     {
+        posMethod = new LevelManager.PositionMethod(LevelManager.instance.GetRandomAssetPosition);
+
         for (int i = 0; i < startAmount; i++)
         {
             SpawnBooster();
@@ -42,7 +47,7 @@ public class BoostManager : MonoBehaviour
     private void SpawnBooster()
     {
         GameObject booster = Pooler.GetInstance();
-        Vector2 spawn = LevelAssetData.instance.GetRandomAssetPosition(true, true);
+        Vector2 spawn = LevelManager.instance.FindAreaWithoutC<Booster>(posMethod, minSpaceBetweenBoosters, true);
         booster.transform.position = spawn;
 
         Booster script = booster.GetComponent<Booster>();

@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public event System.Action<Vector2> Position;
 
-    [SerializeField] float acceleration;
+    [SerializeField] float defaultAcceleration;
+    float currentAcceleration;
     float movementVerticle;
     float movementHorizontal;
     Vector2 movement;
@@ -20,10 +21,12 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        ResetAcceleration();
     }
 
     private void Update()
     {
+        ResetAcceleration();
         //verticle movement (y-axis)
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
         {
@@ -61,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement = new Vector2(movementHorizontal, movementVerticle);
-        rb.AddForce(acceleration * movement.normalized);
+        rb.AddForce(currentAcceleration * movement.normalized);
 
         if (Position != null)
             Position(transform.position);
@@ -76,4 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.eulerAngles.z, targetAngle, turnSpeed * Time.deltaTime
             ));
     }
+
+    public void AddAcceleration(float add) => currentAcceleration += add;
+    public void ResetAcceleration() => currentAcceleration = defaultAcceleration;
 }
