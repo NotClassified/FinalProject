@@ -46,8 +46,6 @@ public class BoostPooler : MonoBehaviour
     public void ReleaseInstance(GameObject usedInstance)
     {
         usedInstance.SetActive(false);
-        //usedInstance.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         usedInstance.transform.position = Vector3.zero;
-        usedInstance.GetComponent<Booster>().TimerFinished -= ReleaseInstance;
     }
 }

@@ -53,7 +53,6 @@ public class BoostManager : MonoBehaviour
 
         Booster script = booster.GetComponent<Booster>();
         script.Lifetime = boostLifetime;
-        script.timerOn = boostLifetime != 0;
 
         script.TimerFinished += InstanceReleased;
         boosterCount++;

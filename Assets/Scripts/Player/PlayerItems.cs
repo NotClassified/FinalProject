@@ -24,7 +24,7 @@ public class PlayerItems : MonoBehaviour
         if (currentItem == null)
         {
             currentItem = ItemManager.instance.GetRandomItem();
-            print("picked up: " + currentItem.GetType());
+            //print("picked up: " + currentItem.GetType());
         }
     }
 
@@ -41,7 +41,7 @@ public class PlayerItems : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && currentItem != null)
+        if (Input.GetKey(KeyCode.LeftShift) && currentItem != null)
         {
             buttonHeldTimer += Time.deltaTime;
             if (buttonHeldTimer >= buttonHeldDuration)

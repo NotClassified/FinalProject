@@ -112,7 +112,7 @@ public class LevelManager : MonoBehaviour
         } while (DoesAreaHaveC<C>(newPos, radius, antiLevelFilter) && ++loopAmount < maxLoops);
 
         if (loopAmount >= maxLoops)
-            Debug.LogWarning("maxLoops was reached");
+            Debug.LogWarning("maxLoops was reached with " + typeof(C).FullName);
 
         return newPos; //no objects with "C" component is within distance
     }

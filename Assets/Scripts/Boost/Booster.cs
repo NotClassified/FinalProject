@@ -7,15 +7,20 @@ public class Booster : MonoBehaviour
     public Vector3 center;
 
     public event System.Action<GameObject> TimerFinished;
+
     private float timer;
-    public bool timerOn;
+    private bool timerOn;
     private float _lifetime;
     public float Lifetime
     {
         set
         {
-            _lifetime = value;
-            timer = value;
+            if (value > 0)
+            {
+                _lifetime = value;
+                timer = value;
+                timerOn = true;
+            }
         }
     }
 
@@ -31,8 +36,8 @@ public class Booster : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0)
             {
-                timerOn = false;
                 timer = _lifetime;
+                timerOn = false;
 
                 TimerFinished(gameObject);
             }
