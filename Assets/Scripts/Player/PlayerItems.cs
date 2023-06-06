@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour
 {
-    [SerializeField] float buttonHeldDuration;
-    float buttonHeldTimer;
-
     private Item currentItem;
 
     private void OnEnable()
@@ -24,37 +21,15 @@ public class PlayerItems : MonoBehaviour
         if (currentItem == null)
         {
             currentItem = ItemManager.instance.GetRandomItem();
-            //print("picked up: " + currentItem.GetType());
         }
     }
 
-    //void UseItem()
-    //{
-    //    if (currentItem != null)
-    //    {
-    //        currentItem.Use(gameObject);
-    //        //reset
-    //        currentItem = null;
-    //        buttonHeldTimer = 0;
-    //    }
-    //}
-
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && currentItem != null)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && currentItem != null)
         {
-            buttonHeldTimer += Time.deltaTime;
-            if (buttonHeldTimer >= buttonHeldDuration)
-            {
-                currentItem.Use(gameObject);
-                //reset
-                currentItem = null;
-                buttonHeldTimer = 0;
-            }
-        }
-        else
-        {
-            buttonHeldTimer = 0;
+            currentItem.Use(gameObject);
+            currentItem = null; //unequip item
         }
     }
 }

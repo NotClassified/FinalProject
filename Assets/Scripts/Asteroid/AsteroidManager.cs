@@ -97,7 +97,7 @@ public class AsteroidManager : MonoBehaviour
         }
     }
 
-    void ReleaseAsteroid(GameObject asteroid)
+    public void ReleaseAsteroid(GameObject asteroid)
     {
         currentAsteroids.Remove(asteroid);
         Pooler.ReleaseInstance(asteroid);

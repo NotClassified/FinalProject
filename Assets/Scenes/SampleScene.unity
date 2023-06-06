@@ -407,34 +407,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3575650983367912579, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: defaultAcceleration
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: dragIncrease
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: boostDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: minBoostForce0Percent
-      value: 700
-      objectReference: {fileID: 0}
-    - target: {fileID: 6188550452421629536, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: maxBoostForce100Precent
-      value: 900
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088261616437076959, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: dragIncrease
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8088261616437076959, guid: 68901af2fac7fee44a0d10a400b260e2, type: 3}
-      propertyPath: dragReleaseDuration
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -538,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAmount: 1
   maxAmount: 10
-  boostLifetime: 0.5
+  boostLifetime: 10
   spawnFrequency: 0.5
   minSpaceBetweenBoosters: 15
 --- !u!1 &1059794916
@@ -602,14 +574,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAmount: 5
   maxAmount: 40
-  spawnBunchAmount: 1
+  spawnBunchAmount: 3
   spawnFrequency: 1
-  spaceBetweenAsteroids: 20
+  spaceBetweenAsteroids: 10
   checkOutOfBoundsFrequency: 20
-  speed: 8
+  speed: 10
   direction: {x: -1, y: 1}
-  minSize: 2
-  maxSize: 5
+  minSize: 3
+  maxSize: 6
   spawnSides: 0100000003000000
 --- !u!1 &1331191838
 GameObject:
@@ -622,6 +594,7 @@ GameObject:
   - component: {fileID: 1331191840}
   - component: {fileID: 1331191839}
   - component: {fileID: 1331191841}
+  - component: {fileID: 1331191842}
   m_Layer: 0
   m_Name: ItemManager
   m_TagString: Untagged
@@ -681,13 +654,40 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331191838}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7c694b372d038d41806b3878d05500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   extraAcceleration: 3
   duration: 5
+--- !u!114 &1331191842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331191838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8be6bb9ea9b5664ca13ab1979afb138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  filter:
+    useTriggers: 1
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &1656854943
 GameObject:
   m_ObjectHideFlags: 0

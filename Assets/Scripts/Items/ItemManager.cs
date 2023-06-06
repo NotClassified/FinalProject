@@ -19,7 +19,8 @@ public class ItemManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        itemTypes = GetComponents<Item>();
+
+        GetEnabledItems();
         PlayerCollision.ItemPickedup += StartDeactivateRoutine;
     }
     private void OnDestroy()
@@ -48,6 +49,24 @@ public class ItemManager : MonoBehaviour
         yield return new WaitForSeconds(pickupCoolDown);
         pickup.SetActive(true);
 
+    }
+
+    void GetEnabledItems()
+    {
+        Item[] tempArray = GetComponents<Item>();
+        List<Item> enabledItems = new List<Item>();
+        for (int i = 0; i < tempArray.Length; i++)
+        {
+            if (tempArray[i].enabled)
+            {
+                enabledItems.Add(tempArray[i]);
+            }
+        }
+        itemTypes = new Item[enabledItems.Count];
+        for (int i = 0; i < enabledItems.Count; i++)
+        {
+            itemTypes[i] = enabledItems[i];
+        }
     }
 
     public Item GetRandomItem() => itemTypes[Random.Range(0, itemTypes.Length)];

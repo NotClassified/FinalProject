@@ -162,7 +162,7 @@ MonoBehaviour:
   assetSize: {x: 9.5, y: 3}
   levelBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 75, y: 45, z: 0}
+    m_Extent: {x: 85, y: 55, z: 0}
   antiLevelFilter:
     useTriggers: 0
     useLayerMask: 1

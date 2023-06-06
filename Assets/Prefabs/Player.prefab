@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77722d6be929f2f4c9ce6682e6e94e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultAcceleration: 20
+  defaultAcceleration: 200
   turnSpeed: 4
 --- !u!114 &6188550452421629536
 MonoBehaviour:
@@ -210,10 +210,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e868421c98d8ba4a9302507446e4f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minBoostForce0Percent: 20
-  maxBoostForce100Precent: 80
+  minBoostForce0Percent: 700
+  maxBoostForce100Precent: 900
   maxDistanceFor0Percent: 1.4
   minDistanceFor100Percent: 0.1
+  boostDuration: 1
+  dragIncrease: 3
   castSize: {x: 1, y: 3}
   contactFilter:
     useTriggers: 1
@@ -242,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcb406630726924d8a541942986ca5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragIncrease: 10
-  dragReleaseDuration: 0.5
+  dragIncrease: 15
+  dragReleaseDuration: 1
 --- !u!114 &5027038753561401717
 MonoBehaviour:
   m_ObjectHideFlags: 0
