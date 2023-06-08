@@ -16,10 +16,12 @@ public class LevelManager : MonoBehaviour
     public delegate Vector2 PositionOnScreenSide(ScreenSides[] sides);
 
     public List<Bounds> assetBounds = new List<Bounds>();
-    public List<int> filledAssets = new List<int>();
     [SerializeField] Vector2 assetSize;
     [SerializeField] Bounds levelBounds;
     [SerializeField] ContactFilter2D antiLevelFilter;
+
+    public Vector3 playerSpawn;
+    [HideInInspector] public int checkPointAmount;
 
     private void Awake()
     {
@@ -40,6 +42,8 @@ public class LevelManager : MonoBehaviour
                 assetBounds.Add(new Bounds(child.position, boundSize));
             }
         }
+
+        checkPointAmount = transform.Find("Checkpoints").childCount;
     }
 
     public Vector2 GetRandomBoundaryPosition(ScreenSides[] screenSides)

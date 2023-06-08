@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    Transform player;
 
     [SerializeField] float lerpSpeed;
     Vector3 targetPos;
@@ -16,6 +16,12 @@ public class CameraMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (player == null)
+        {
+            player = FindObjectOfType<PlayerMovement>().transform;
+            return;
+        }
+
         targetPos.x = player.position.x;
         targetPos.y = player.position.y;
         transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed);

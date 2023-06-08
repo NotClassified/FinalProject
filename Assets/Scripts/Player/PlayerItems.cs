@@ -21,6 +21,7 @@ public class PlayerItems : MonoBehaviour
         if (currentItem == null)
         {
             currentItem = ItemManager.instance.GetRandomItem();
+            print("Picked up " + currentItem.GetType().FullName);
         }
     }
 
