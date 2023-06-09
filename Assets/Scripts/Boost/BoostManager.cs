@@ -21,16 +21,32 @@ public class BoostManager : MonoBehaviour
     [SerializeField] float boostLifetime;
     [SerializeField] float spawnFrequency;
     [SerializeField] float minSpaceBetweenBoosters;
+    Coroutine boosterSpawnRoutine;
 
     LevelManager.PositionMethod posMethod;
 
-    private IEnumerator Start()
+    private void Awake()
+    {
+        GameManager.GameOver += delegate { StopCoroutine(boosterSpawnRoutine); };
+    }
+    private void OnDestroy()
+    {
+        GameManager.GameOver -= delegate { StopCoroutine(boosterSpawnRoutine); };
+    }
+
+    private void Start()
     {
         posMethod = LevelManager.instance.GetRandomAssetPosition;
 
+        boosterSpawnRoutine = StartCoroutine(SpawnBoostersRoutine());
+    }
+
+    IEnumerator SpawnBoostersRoutine()
+    {
+
         for (int i = 0; i < startAmount; i++)
         {
-            SpawnBooster();
+            SpawnBoosterInstance();
             yield return new WaitForEndOfFrame();
         }
 
@@ -39,13 +55,13 @@ public class BoostManager : MonoBehaviour
             while (boosterCount < maxAmount)
             {
                 yield return new WaitForSeconds(spawnFrequency);
-                SpawnBooster();
+                SpawnBoosterInstance();
             }
             yield return null;
         }
     }
 
-    private void SpawnBooster()
+    private void SpawnBoosterInstance()
     {
         GameObject booster = Pooler.GetInstance();
         Vector2 spawn = LevelManager.instance.FindAreaWithoutC<Booster>(posMethod, minSpaceBetweenBoosters, true);

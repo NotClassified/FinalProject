@@ -27,19 +27,22 @@ public class LevelManager : MonoBehaviour
     {
         instance = this;
 
-        foreach (Transform child in transform)
+        if (assetBounds.Count == 0)
         {
-            if (child.name.Contains("Straight"))
+            foreach (Transform child in transform)
             {
-                Vector3 boundSize = assetSize;
-                if (child.localEulerAngles.z != 0)
+                if (child.name.Contains("Straight"))
                 {
-                    var temp = boundSize.x;
-                    boundSize.x = boundSize.y;
-                    boundSize.y = temp;
-                }
+                    Vector3 boundSize = assetSize;
+                    if (child.localEulerAngles.z != 0)
+                    {
+                        var temp = boundSize.x;
+                        boundSize.x = boundSize.y;
+                        boundSize.y = temp;
+                    }
 
-                assetBounds.Add(new Bounds(child.position, boundSize));
+                    assetBounds.Add(new Bounds(child.position, boundSize));
+                }
             }
         }
 
@@ -154,6 +157,10 @@ public class LevelManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawCube(levelBounds.center, levelBounds.size);
+        Gizmos.DrawWireCube(levelBounds.center, levelBounds.size);
+        for (int i = 0; i < assetBounds.Count; i++)
+        {
+            Gizmos.DrawCube(assetBounds[i].center, assetBounds[i].size);
+        }
     }
 }

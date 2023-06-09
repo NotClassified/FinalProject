@@ -129,9 +129,5 @@ public class AsteroidManager : MonoBehaviour
     private void StopAsteroids()
     {
         StopCoroutine(asteroidRoutine);
-        foreach (GameObject asteroid in currentAsteroids)
-        {
-            asteroid.GetComponent<Asteroid>().speed = 0;
-        }
     }
 }
