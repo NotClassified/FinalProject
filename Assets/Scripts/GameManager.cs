@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     float timer = 0;
     public event System.Action<float> Timelapse;
     int targetCheckpoint = 0;
-    public event System.Action GameOver;
+    public static event System.Action GameOver;
 
     LevelManager levelManager;
 

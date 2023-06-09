@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerBoost : MonoBehaviour
 {
@@ -41,12 +42,20 @@ public class PlayerBoost : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && attemptTimer <= 0)
+        if (attemptTimer > 0)
+        {
+            attemptTimer -= Time.deltaTime;
+        }
+    }
+
+    public void AttemptBoost(InputAction.CallbackContext context)
+    {
+        if (context.performed && attemptTimer <= 0)
         {
             attemptTimer = attemptCoolDown;
 
             RaycastHit2D[] boosterHit = new RaycastHit2D[1];
-            if (Physics2D.BoxCast(transform.position, castSize, transform.eulerAngles.z, 
+            if (Physics2D.BoxCast(transform.position, castSize, transform.eulerAngles.z,
                  Vector3.zero, contactFilter, boosterHit) > 0)
             {
                 //distance between player and booster to determine extra speed amount
@@ -63,11 +72,6 @@ public class PlayerBoost : MonoBehaviour
                 ForceStopForwardBoostRoutine(); //prevent multiple routines
                 forwardBoostRoutine = StartCoroutine(ForwardBoost(force));
             }
-        }
-
-        if (attemptTimer > 0)
-        {
-            attemptTimer -= Time.deltaTime;
         }
     }
 

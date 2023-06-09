@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerItems : MonoBehaviour
 {
@@ -25,9 +26,9 @@ public class PlayerItems : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void UseItem(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && currentItem != null)
+        if (context.performed && currentItem != null)
         {
             currentItem.Use(gameObject);
             currentItem = null; //unequip item

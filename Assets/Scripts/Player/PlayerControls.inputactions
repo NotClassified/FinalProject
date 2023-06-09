@@ -2,31 +2,31 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "BasicMovement",
-            "id": "ace83494-847e-4d21-b222-d67539d14c99",
+            "name": "Player",
+            "id": "73c9fe08-e75c-4537-b76f-691c17f6ab5a",
             "actions": [
                 {
-                    "name": "Forward",
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "2ba49785-b9f6-4706-b4ef-31a4be15a05f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "UseItem",
                     "type": "Button",
-                    "id": "fd6e20bb-834e-45d1-943a-3652706154c2",
+                    "id": "dd5d01e8-4081-4658-b8a1-38da6a92bebd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Rotate",
+                    "name": "AttemptBoost",
                     "type": "Button",
-                    "id": "3a6fa0e4-c233-43e4-8545-b4dd8e70b93b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Backward",
-                    "type": "Button",
-                    "id": "38d1f01b-419b-4ac7-b445-f4a13a3e458e",
+                    "id": "16cc0285-29a5-4be4-a34e-5c2ca8e2e693",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -35,59 +35,81 @@
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "d18ce675-f45d-47e7-9eb8-e725721f8380",
-                    "path": "<Keyboard>/w",
+                    "name": "WASD",
+                    "id": "850f5014-7f12-4acf-9fc3-189f25f2bb65",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Forward",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d1073d06-fe0f-4f89-8b73-1cfc2bffa401",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Backward",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "23774acf-628b-4915-bbf6-0e41755a37d0",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotate",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "945c634c-e6df-4168-a744-10c98b1892a6",
-                    "path": "<Keyboard>/a",
+                    "name": "up",
+                    "id": "bc08a725-a3a5-43f5-8dbb-f649c9b1b242",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
-                    "processors": "Clamp(max=1)",
+                    "processors": "",
                     "groups": "",
-                    "action": "Rotate",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "2a227a9d-7b63-4bac-9d7f-7f54682f740b",
-                    "path": "<Keyboard>/a",
+                    "name": "down",
+                    "id": "1a3defa8-02af-4e3c-84b9-eaf4f4608434",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
-                    "processors": "Clamp(max=1)",
+                    "processors": "",
                     "groups": "",
-                    "action": "Rotate",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "61419305-e25e-4ef8-aee8-e6318ff09270",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "6c2026ad-b8e9-447f-bd1d-03de4ab9db64",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c22765bc-a791-4110-ab5f-f59527ac49c5",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f22ca00e-a216-4013-8b2d-7c2241424003",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttemptBoost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
