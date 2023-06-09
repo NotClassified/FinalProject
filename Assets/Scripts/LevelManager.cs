@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] ContactFilter2D antiLevelFilter;
 
     public Vector3 playerSpawn;
+    public Vector3 spawnDirection;
     [HideInInspector] public int checkPointAmount;
 
     private void Awake()

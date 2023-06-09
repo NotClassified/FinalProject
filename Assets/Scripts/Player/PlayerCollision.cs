@@ -19,17 +19,11 @@ public class PlayerCollision : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         initialDrag = rb.drag;
-        PlayerItems.ItemUsed += delegate
-        {
-            asteroidIgnore_Timer = asteroidIgnore_CoolDown;
-        };
+        PlayerItems.ItemUsed += ItemEffectsOnCollision;
     }
     private void OnDestroy()
     {
-        PlayerItems.ItemUsed -= delegate
-        {
-            asteroidIgnore_Timer = asteroidIgnore_CoolDown;
-        };
+        PlayerItems.ItemUsed -= ItemEffectsOnCollision;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,5 +68,14 @@ public class PlayerCollision : MonoBehaviour
         }
         rb.drag = initialDrag;
         slowerSpeedRoutine = null;
+    }
+
+    void ItemEffectsOnCollision(Item item)
+    {
+        //ignore asteroids for the speed of light boost
+        if (item is SpeedOfLightBoost)
+        {
+            asteroidIgnore_Timer = asteroidIgnore_CoolDown;
+        }
     }
 }

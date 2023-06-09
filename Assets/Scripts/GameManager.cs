@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = Instantiate(playerPrefab, levelManager.playerSpawn, Quaternion.identity);
+        player = Instantiate(playerPrefab, levelManager.playerSpawn, Quaternion.Euler(levelManager.spawnDirection));
+
         timerOn = true;
     }
 

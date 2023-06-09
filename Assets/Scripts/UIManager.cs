@@ -7,6 +7,7 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Slider speedBar;
+    [SerializeField] float speedBarLerp;
     [SerializeField] TextMeshProUGUI itemDisplay_Text;
 
     [SerializeField] TextMeshProUGUI timerMilisecond_Text;
@@ -45,7 +46,7 @@ public class UIManager : MonoBehaviour
         {
             speedBar.maxValue = speed;
         }
-        speedBar.value = speed;
+        speedBar.value = Mathf.Lerp(speedBar.value, speed, Time.deltaTime * speedBarLerp);
     }
 
     void DisplayItem(Item item)

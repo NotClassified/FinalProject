@@ -21,6 +21,12 @@ public class PlayerMovement : MonoBehaviour, IContainsInput
     {
         rb = GetComponent<Rigidbody2D>();
         ResetAcceleration();
+
+    }
+    private void Start()
+    {
+        targetAngle = LevelManager.instance.spawnDirection.z;
+        rotation.z = targetAngle;
     }
 
     public void Move(InputAction.CallbackContext context)
