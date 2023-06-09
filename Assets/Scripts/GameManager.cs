@@ -5,12 +5,15 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] int frameRate = -1;
+
     [SerializeField] GameObject playerPrefab;
     GameObject player;
 
     bool timerOn = false;
     float timer = 0;
     public static event System.Action<float> Timelapse;
+
     int targetCheckpoint = 0;
     public static event System.Action GameOver;
 
@@ -18,6 +21,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        if (frameRate != -1)
+        {
+            Debug.LogWarning("frameRate changed");
+        }
+        Application.targetFrameRate = frameRate;
+
         levelManager = FindObjectOfType<LevelManager>();
         Checkpoint.checkpointHit += NextCheckpoint;
         GameOver += delegate 

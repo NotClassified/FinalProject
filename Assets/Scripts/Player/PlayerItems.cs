@@ -5,7 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerItems : MonoBehaviour, IContainsInput
 {
-    private Item currentItem;
+    public static event System.Action<Item> ItemChange;
+
+    private Item _currentItem;
+    private Item CurrentItem
+    {
+        get => _currentItem;
+        set
+        {
+            _currentItem = value;
+
+            if (ItemChange != null)
+                ItemChange(_currentItem);
+        }
+    }
 
     private void OnEnable()
     {
@@ -19,19 +32,18 @@ public class PlayerItems : MonoBehaviour, IContainsInput
 
     void PickupItem(GameObject itemObj)
     {
-        if (currentItem == null)
+        if (CurrentItem == null)
         {
-            currentItem = ItemManager.instance.GetRandomItem();
-            print("Picked up " + currentItem.GetType().FullName);
+            CurrentItem = ItemManager.instance.GetRandomItem();
         }
     }
 
     public void UseItem(InputAction.CallbackContext context)
     {
-        if (context.performed && currentItem != null)
+        if (context.performed && CurrentItem != null)
         {
-            currentItem.Use(gameObject);
-            currentItem = null; //unequip item
+            CurrentItem.Use(gameObject);
+            CurrentItem = null; //unequip item
         }
     }
 }

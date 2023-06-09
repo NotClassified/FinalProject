@@ -7,15 +7,19 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] Slider speedBar;
+    [SerializeField] TextMeshProUGUI itemDisplay_Text;
+
     [SerializeField] TextMeshProUGUI timerMilisecond_Text;
     [SerializeField] TextMeshProUGUI timerMinuteAndSecond_Text;
+    TimeObject gameTimer;
+
     [SerializeField] TextMeshProUGUI gameOverTimer_Text;
     [SerializeField] GameObject gameOverScreenObj;
-    TimeObject gameTimer;
 
     private void OnEnable()
     {
         PlayerMovement.PlayerVelocity += SpeedUpdate;
+        PlayerItems.ItemChange += DisplayItem;
         GameManager.Timelapse += TimeLapseText;
         GameManager.GameOver += GameOverScreen;
 
@@ -25,6 +29,7 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         PlayerMovement.PlayerVelocity -= SpeedUpdate;
+        PlayerItems.ItemChange -= DisplayItem;
         GameManager.Timelapse -= TimeLapseText;
         GameManager.GameOver -= GameOverScreen;
     }
@@ -41,6 +46,17 @@ public class UIManager : MonoBehaviour
             speedBar.maxValue = speed;
         }
         speedBar.value = speed;
+    }
+
+    void DisplayItem(Item item)
+    {
+        if (item == null)
+        {
+            itemDisplay_Text.text = "";
+            return;
+        }
+
+        itemDisplay_Text.text = item.GetType().FullName;
     }
 
     private void TimeLapseText(float timer)

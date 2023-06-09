@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : Item
+public class AsteroidGun : Item
 {
     [SerializeField] float radius;
     [SerializeField] ContactFilter2D filter;
@@ -16,6 +16,7 @@ public class Gun : Item
 
     public override void Use(GameObject player)
     {
+        base.Use(player);
 
         Collider2D[] results = new Collider2D[5];
         Physics2D.OverlapCircle(player.transform.position, radius, filter, results);
