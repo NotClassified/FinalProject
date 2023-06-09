@@ -1045,8 +1045,8 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  minOffsetOfTargetPos: 0
-  maxOffsetOfTargetPos: 0
+  minOffsetOfTargetPos: 5
+  maxOffsetOfTargetPos: 20
   maxVelocity: 22
 --- !u!1 &1635315482
 GameObject:

@@ -198,13 +198,181 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 441209f19fd2b8b448996104a9e2c24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetBounds: []
+  assetBounds:
+  - m_Center: {x: 55, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 45, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 35, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 5, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -5, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -25, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -15, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -35, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -45, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -55, y: -35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 45, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 55, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 35, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: -15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 35, y: -15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: -15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 35, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -5, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 5, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -15, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -25, y: 15, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 35, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -5, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 5, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -15, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -25, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 45, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 45, y: 5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 55, y: 5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 55, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 65, y: 5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 65, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 65, y: 25, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 65, y: 15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 55, y: 15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 45, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 55, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 35, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -5, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 5, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -15, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -35, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -25, y: 35, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -45, y: 15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -45, y: 25, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -45, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -45, y: 5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 25, y: 5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: 5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -5, y: 5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 5, y: 5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 25, y: -5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 15, y: -5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: 5, y: -5, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -15, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -25, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -35, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -45, y: -25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
+  - m_Center: {x: -35, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -25, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -15, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -5, y: -15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -55, y: -15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -55, y: 15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -55, y: 25, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -55, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -55, y: 5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -65, y: -15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -65, y: 15, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -65, y: 25, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -65, y: -5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -65, y: 5, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: -65, y: -25, z: 0}
+    m_Extent: {x: 1.5, y: 4.75, z: 0}
+  - m_Center: {x: 45, y: 25, z: 0}
+    m_Extent: {x: 4.75, y: 1.5, z: 0}
   assetSize: {x: 9.5, y: 3}
   levelBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 85, y: 55, z: 0}
+    m_Extent: {x: 110, y: 70, z: 0}
   antiLevelFilter:
-    useTriggers: 0
+    useTriggers: 1
     useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
@@ -218,6 +386,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   playerSpawn: {x: 0, y: -35, z: 0}
+  checkPointAmount: 9
 --- !u!1001 &27593768913836509
 PrefabInstance:
   m_ObjectHideFlags: 0
