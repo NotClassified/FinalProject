@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField] float asteroidIgnore_CoolDown;
+    float asteroidIgnore_Timer;
     public static event System.Action<GameObject> AsteroidHit;
     public static event System.Action<GameObject> ItemPickedup;
 
@@ -17,6 +19,17 @@ public class PlayerCollision : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         initialDrag = rb.drag;
+        PlayerItems.ItemUsed += delegate
+        {
+            asteroidIgnore_Timer = asteroidIgnore_CoolDown;
+        };
+    }
+    private void OnDestroy()
+    {
+        PlayerItems.ItemUsed -= delegate
+        {
+            asteroidIgnore_Timer = asteroidIgnore_CoolDown;
+        };
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,7 +39,8 @@ public class PlayerCollision : MonoBehaviour
             if (slowerSpeedRoutine != null)
                 //don't have multiple SlowDownSpeed routines
                 StopCoroutine(slowerSpeedRoutine);
-            slowerSpeedRoutine = StartCoroutine(SlowDownSpeed());
+            if (asteroidIgnore_Timer <= 0)
+                slowerSpeedRoutine = StartCoroutine(SlowDownSpeed());
 
             if (AsteroidHit != null)
                 AsteroidHit(collision.gameObject);
@@ -35,6 +49,14 @@ public class PlayerCollision : MonoBehaviour
         {
             if (ItemPickedup != null)
                 ItemPickedup(collision.transform.gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        if (asteroidIgnore_Timer > 0)
+        {
+            asteroidIgnore_Timer -= Time.deltaTime;
         }
     }
 

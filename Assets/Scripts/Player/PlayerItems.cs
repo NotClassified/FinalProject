@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerItems : MonoBehaviour, IContainsInput
 {
     public static event System.Action<Item> ItemChange;
+    public static event System.Action<Item> ItemUsed;
 
     private Item _currentItem;
     private Item CurrentItem
@@ -43,6 +44,8 @@ public class PlayerItems : MonoBehaviour, IContainsInput
         if (context.performed && CurrentItem != null)
         {
             CurrentItem.Use(gameObject);
+
+            ItemUsed(CurrentItem); //notify
             CurrentItem = null; //unequip item
         }
     }

@@ -16,13 +16,13 @@ public class AsteroidManager : MonoBehaviour
     }
 
     [Header("Managing Instances")]
-    private List<GameObject> currentAsteroids = new List<GameObject>();
     [SerializeField] int startAmount;
     [SerializeField] int maxAmount;
     [SerializeField] int spawnBunchAmount;
     [SerializeField] float spawnFrequency;
     [SerializeField] float spaceBetweenAsteroids;
     [SerializeField] float checkOutOfBoundsFrequency;
+    public List<GameObject> currentAsteroids = new List<GameObject>();
     Coroutine asteroidRoutine;
 
     [Header("Instance Parameters")]
@@ -98,11 +98,24 @@ public class AsteroidManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(checkOutOfBoundsFrequency);
+
+            GameObject[] outOfBoundsAsteroids = new GameObject[maxAmount];
+            int nextIndex = 0;
+
             for (int i = 0; i < currentAsteroids.Count; i++)
             {
-                //release asteroids that are out of bounds
                 if (!LevelManager.instance.IsInLevelBounds(currentAsteroids[i].transform.position))
-                    ReleaseAsteroid(currentAsteroids[i]);
+                {
+                    outOfBoundsAsteroids[nextIndex] = currentAsteroids[i];
+                    nextIndex++;
+                }
+            }
+            //release asteroids that are out of bounds
+            foreach (GameObject asteroid in outOfBoundsAsteroids)
+            {
+                if (asteroid == null)
+                    break;
+                ReleaseAsteroid(asteroid);
             }
         }
     }

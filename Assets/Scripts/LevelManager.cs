@@ -154,6 +154,6 @@ public class LevelManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawCube(levelBounds.center, levelBounds.size);
+        Gizmos.DrawCube(levelBounds.center, levelBounds.size);
     }
 }

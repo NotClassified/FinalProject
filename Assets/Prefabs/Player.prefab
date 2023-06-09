@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbcb406630726924d8a541942986ca5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidIgnore_CoolDown: 2
   dragIncrease: 15
   dragReleaseDuration: 1
 --- !u!114 &5027038753561401717
