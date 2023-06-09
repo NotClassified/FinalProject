@@ -23,6 +23,7 @@ public class AsteroidManager : MonoBehaviour
     [SerializeField] float spawnFrequency;
     [SerializeField] float spaceBetweenAsteroids;
     [SerializeField] float checkOutOfBoundsFrequency;
+    Coroutine asteroidRoutine;
 
     [Header("Instance Parameters")]
     [SerializeField] float speed;
@@ -35,16 +36,25 @@ public class AsteroidManager : MonoBehaviour
 
     private void Awake()
     {
-        posMethod =LevelManager.instance.GetRandomBoundaryPosition;
+        posMethod = LevelManager.instance.GetRandomBoundaryPosition;
 
         PlayerCollision.AsteroidHit += ReleaseAsteroid;
+
+        GameManager.GameOver += StopAsteroids;
     }
+
     private void OnDestroy()
     {
         PlayerCollision.AsteroidHit -= ReleaseAsteroid;
+        GameManager.GameOver -= StopAsteroids;
     }
 
-    private IEnumerator Start()
+    private void Start()
+    {
+        asteroidRoutine = StartCoroutine(AsteroidSpawning());
+    }
+
+    private IEnumerator AsteroidSpawning()
     {
         for (int i = 0; i < startAmount; i++)
         {
@@ -101,5 +111,14 @@ public class AsteroidManager : MonoBehaviour
     {
         currentAsteroids.Remove(asteroid);
         Pooler.ReleaseInstance(asteroid);
+    }
+
+    private void StopAsteroids()
+    {
+        StopCoroutine(asteroidRoutine);
+        foreach (GameObject asteroid in currentAsteroids)
+        {
+            asteroid.GetComponent<Asteroid>().speed = 0;
+        }
     }
 }

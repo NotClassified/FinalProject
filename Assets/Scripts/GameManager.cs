@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     bool timerOn = false;
     float timer = 0;
-    public event System.Action<float> Timelapse;
+    public static event System.Action<float> Timelapse;
     int targetCheckpoint = 0;
     public static event System.Action GameOver;
 
@@ -19,13 +20,21 @@ public class GameManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelManager>();
         Checkpoint.checkpointHit += NextCheckpoint;
-        GameOver += delegate { timerOn = false; };
+        GameOver += delegate 
+        { 
+            timerOn = false;
+            TogglePlayerInput(false); 
+        };
     }
 
     private void OnDestroy()
     {
         Checkpoint.checkpointHit -= NextCheckpoint;
-        GameOver -= delegate { timerOn = false; };
+        GameOver -= delegate 
+        { 
+            timerOn = false;
+            TogglePlayerInput(false);
+        };
     }
 
     private void Start()
@@ -51,13 +60,25 @@ public class GameManager : MonoBehaviour
         if (targetCheckpoint == checkpointIndex)
         {
             targetCheckpoint++;
-            print("checkpoint reached: " + targetCheckpoint);
 
             if (targetCheckpoint >= levelManager.checkPointAmount) //last checkpoint
             {
-                print("finished");
                 if (GameOver != null)
                     GameOver();
+            }
+        }
+    }
+
+    void TogglePlayerInput(bool enablePlayerInput)
+    {
+        if (player != null)
+        {
+            foreach (MonoBehaviour component in player.GetComponents<MonoBehaviour>())
+            {
+                if (component is IContainsInput)
+                {
+                    component.enabled = enablePlayerInput;
+                }
             }
         }
     }

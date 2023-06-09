@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBoost : MonoBehaviour
+public class PlayerBoost : MonoBehaviour, IContainsInput
 {
     [Header("Boost Parameters")]
     [SerializeField] float minBoostForce0Percent;

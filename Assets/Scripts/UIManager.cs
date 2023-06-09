@@ -9,17 +9,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] Slider speedBar;
     [SerializeField] TextMeshProUGUI timerMilisecond_Text;
     [SerializeField] TextMeshProUGUI timerMinuteAndSecond_Text;
+    [SerializeField] TextMeshProUGUI gameOverTimer_Text;
+    [SerializeField] GameObject gameOverScreenObj;
+    TimeObject gameTimer;
 
     private void OnEnable()
     {
         PlayerMovement.PlayerVelocity += SpeedUpdate;
-        FindObjectOfType<GameManager>().Timelapse += TimeLapseText;
+        GameManager.Timelapse += TimeLapseText;
+        GameManager.GameOver += GameOverScreen;
+
+        gameOverScreenObj.SetActive(false);
     }
 
     private void OnDisable()
     {
         PlayerMovement.PlayerVelocity -= SpeedUpdate;
-        FindObjectOfType<GameManager>().Timelapse -= TimeLapseText;
+        GameManager.Timelapse -= TimeLapseText;
+        GameManager.GameOver -= GameOverScreen;
     }
 
     void SpeedUpdate(Vector2 velocity)
@@ -38,8 +45,14 @@ public class UIManager : MonoBehaviour
 
     private void TimeLapseText(float timer)
     {
-        TimeObject timeObj = new TimeObject(timer);
-        timerMilisecond_Text.text = timeObj.GetFormat(TimeObject.Format.TwoDigitMilisecond, ':');
-        timerMinuteAndSecond_Text.text = timeObj.GetFormat(TimeObject.Format.TwoDigitMinuteAndSecond, ':') + ':';
+        gameTimer = new TimeObject(timer);
+        timerMilisecond_Text.text = gameTimer.GetFormat(TimeObject.Format.TwoDigitMilisecond, ':');
+        timerMinuteAndSecond_Text.text = gameTimer.GetFormat(TimeObject.Format.TwoDigitMinSec, ':') + ':';
+    }
+
+    private void GameOverScreen()
+    {
+        gameOverTimer_Text.text = gameTimer.GetFormat(TimeObject.Format.TwoDigitMinSecMili, ':');
+        gameOverScreenObj.SetActive(true);
     }
 }

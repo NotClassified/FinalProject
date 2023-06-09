@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerItems : MonoBehaviour
+public class PlayerItems : MonoBehaviour, IContainsInput
 {
     private Item currentItem;
 

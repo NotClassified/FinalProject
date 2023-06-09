@@ -14,7 +14,7 @@ public class TimeObject
 
     public enum Format
     {
-        TwoDigitMinuteAndSecond, TwoDigitMilisecond
+        TwoDigitMinSec, TwoDigitMilisecond, TwoDigitMinSecMili
     }
 
     public TimeObject(float uncovertedTimer)
@@ -31,7 +31,7 @@ public class TimeObject
         string newFormat = "";
         switch (format)
         {
-            case Format.TwoDigitMinuteAndSecond:
+            case Format.TwoDigitMinSec:
                 if (minutes < 10)
                     newFormat += "0";
                 newFormat += minutes;
@@ -46,6 +46,12 @@ public class TimeObject
                 if (miliseconds < 10)
                     newFormat += "0";
                 newFormat += miliseconds;
+                break;
+
+            case Format.TwoDigitMinSecMili:
+                newFormat += GetFormat(Format.TwoDigitMinSec, divider);
+                newFormat += divider;
+                newFormat += GetFormat(Format.TwoDigitMilisecond, divider);
                 break;
 
             default:
