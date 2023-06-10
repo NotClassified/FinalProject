@@ -624,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAmount: 10
   maxAmount: 20
-  boostLifetime: 10
+  boostLifetime: 20
   spawnFrequency: 0.5
   minSpaceBetweenBoosters: 15
 --- !u!1 &1059794916
