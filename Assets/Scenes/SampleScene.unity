@@ -622,8 +622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c872fdd9c824e44fbf7791cdfb8c0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAmount: 1
-  maxAmount: 10
+  startAmount: 10
+  maxAmount: 20
   boostLifetime: 10
   spawnFrequency: 0.5
   minSpaceBetweenBoosters: 15
@@ -644,7 +644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1059794917
 Transform:
   m_ObjectHideFlags: 0
@@ -933,7 +933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1331191839
 MonoBehaviour:
   m_ObjectHideFlags: 0

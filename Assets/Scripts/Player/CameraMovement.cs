@@ -18,7 +18,11 @@ public class CameraMovement : MonoBehaviour
     {
         if (player == null)
         {
-            player = FindObjectOfType<PlayerMovement>().transform;
+            var playerScript = FindObjectOfType<PlayerMovement>();
+            if (playerScript != null)
+            {
+                player = playerScript.transform;
+            }
             return;
         }
 

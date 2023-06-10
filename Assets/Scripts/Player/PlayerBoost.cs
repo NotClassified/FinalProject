@@ -24,6 +24,14 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
     [SerializeField] float attemptCoolDown;
     float attemptTimer;
 
+    [Header("Trail Effect")]
+    [SerializeField] float trailAlpha;
+    [SerializeField] float trailAlphaLerpSpeed;
+    [SerializeField] float minTraillength;
+    [SerializeField] float maxTraillength;
+    float targetTrailAlpha;
+    TrailRenderer boostTrail;
+
     Rigidbody2D rb;
     Coroutine forwardBoostRoutine;
 
@@ -31,6 +39,11 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
     {
         rb = GetComponent<Rigidbody2D>();
         initialDrag = rb.drag;
+
+        boostTrail = GetComponent<TrailRenderer>();
+        targetTrailAlpha = trailAlpha;
+        SetTrailAlpha(targetTrailAlpha);
+        boostTrail.enabled = false;
 
         PlayerCollision.AsteroidHit += StopBoostWhenAsteroidHit;
     }
@@ -45,6 +58,17 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
         if (attemptTimer > 0)
         {
             attemptTimer -= Time.deltaTime;
+        }
+        if (boostTrail.material.color.a < targetTrailAlpha - .05f || boostTrail.material.color.a > targetTrailAlpha + .05f)
+        {
+            SetTrailAlpha(Mathf.Lerp(boostTrail.material.color.a, targetTrailAlpha, Time.deltaTime * trailAlphaLerpSpeed));
+        }
+        else if (boostTrail.material.color.a != targetTrailAlpha)
+            SetTrailAlpha(targetTrailAlpha);
+
+        if (boostTrail.enabled && boostTrail.material.color.a == 0)
+        {
+            boostTrail.enabled = false;
         }
     }
 
@@ -68,6 +92,8 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
                                                                                   maxDistanceFor0Percent,
                                                                                     minDistanceFor100Percent));
                 float force = Mathf.Lerp(minBoostForce0Percent, maxBoostForce100Precent, percentBoost);
+                //more force = longer trail effect
+                boostTrail.time = Mathf.Lerp(minTraillength, maxTraillength, percentBoost);
 
                 ForceStopForwardBoostRoutine(); //prevent multiple routines
                 forwardBoostRoutine = StartCoroutine(ForwardBoost(force));
@@ -79,6 +105,15 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
     {
         rb.drag = initialDrag + dragIncrease;
 
+        if (!boostTrail.enabled)
+        {
+            boostTrail.enabled = true;
+            targetTrailAlpha = trailAlpha;
+            SetTrailAlpha(targetTrailAlpha);
+        }
+        else
+            targetTrailAlpha = trailAlpha;
+
         float timer = 0;
         while (timer < boostDuration)
         {
@@ -87,6 +122,8 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
             yield return new WaitForFixedUpdate();
         }
         rb.drag = initialDrag;
+
+        targetTrailAlpha = 0f;
     }
 
     void ForceStopForwardBoostRoutine()
@@ -96,7 +133,18 @@ public class PlayerBoost : MonoBehaviour, IContainsInput
             StopCoroutine(forwardBoostRoutine);
         }
     }
-    void StopBoostWhenAsteroidHit(GameObject asteroid) => ForceStopForwardBoostRoutine();
+    void StopBoostWhenAsteroidHit(GameObject asteroid)
+    {
+        ForceStopForwardBoostRoutine();
+        targetTrailAlpha = 0f;
+    }
+
+    void SetTrailAlpha(float alpha)
+    {
+        var newAlpha = boostTrail.material.color;
+        newAlpha.a = alpha;
+        boostTrail.material.color = newAlpha;
+    }
 
     public static float FindPercentageOfAValueBetweenTwoNumbers(float value, float a, float b)
     {
