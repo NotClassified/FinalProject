@@ -36,7 +36,6 @@ public class AsteroidManager : MonoBehaviour
 
     private void Awake()
     {
-        posMethod = LevelManager.instance.GetRandomBoundaryPosition;
 
         PlayerCollision.AsteroidHit += ReleaseAsteroid;
 
@@ -51,6 +50,7 @@ public class AsteroidManager : MonoBehaviour
 
     private void Start()
     {
+        posMethod = LevelManager.instance.GetRandomBoundaryPosition;
         asteroidRoutine = StartCoroutine(AsteroidSpawning());
     }
 
